@@ -79,6 +79,41 @@
       #binder {
         padding: 14px 18px 30px;
       }
+      /* Once a collection is open, the window is the frame and only the card
+         list scrolls - the same layout the binder has inside its own tab.
+         That bound is what lets the list build just the rows on screen:
+         without it the list grows to its full height, every row counts as
+         visible, and all of them are built on every redraw. */
+      body.has-binder {
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      body.has-binder #binder {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0;
+      }
+      body.has-binder #binder > .mtg-binder-header,
+      body.has-binder #binder > .mtg-binder-analytics,
+      body.has-binder #binder > .mtg-binder-mode-banner {
+        flex: none;
+      }
+      body.has-binder #binder > .mtg-binder-scroll {
+        flex: 1 1 auto;
+        min-height: 160px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: 16px;
+      }
+      body.has-binder #credits {
+        flex: none;
+        margin: 4px auto 6px;
+      }
       /* Credits: small and out of the way, but always on the page. */
       #credits {
         max-width: 760px;
