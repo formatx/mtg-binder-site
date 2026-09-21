@@ -6,8 +6,13 @@ test hands and goldfish a deck.
 
 **Open it: https://formatx.github.io/mtg-binder-site/**
 
+Open a CSV from a card scanner app, Moxfield, Archidekt, Deckbox, MTGGoldfish
+or a spreadsheet, or paste a decklist. With the MTG Binder link helper
+extension, it also imports public Moxfield, Archidekt and MTGGoldfish links.
+
 Your collection stays in your browser. The page only asks
-[Scryfall](https://scryfall.com) for each card's artwork and prices.
+[Scryfall](https://scryfall.com) for each card's artwork and prices, and the
+sites of any links you paste.
 
 This repository holds only the built page; it is published automatically.
 

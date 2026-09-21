@@ -56,8 +56,7 @@
         border-color: var(--interactive-accent);
         color: var(--text-normal);
       }
-      button,
-      input[type="file"] {
+      button {
         background: var(--background-secondary);
         color: var(--text-normal);
         border: 1px solid var(--background-modifier-border);
@@ -114,6 +113,38 @@
         flex: none;
         margin: 4px auto 6px;
       }
+      #moxfield {
+        margin-top: 18px;
+        padding: 18px 22px;
+        border: 1px solid var(--background-modifier-border);
+        border-radius: 12px;
+      }
+      #moxfield h2 {
+        font-size: 1rem;
+        margin: 0 0 4px;
+      }
+      #mox-links {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 4px 0 8px;
+        padding: 8px 10px;
+        border-radius: 7px;
+        border: 1px solid var(--background-modifier-border);
+        background: var(--background-secondary);
+        color: var(--text-normal);
+        font: 0.8rem ui-monospace, SFMono-Regular, Consolas, monospace;
+        resize: vertical;
+      }
+      #mox-links:disabled,
+      #mox-import:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+      #mox-status {
+        white-space: pre-line;
+        font-size: 0.78rem;
+        margin-bottom: 0;
+      }
       /* Credits: small and out of the way, but always on the page. */
       #credits {
         max-width: 760px;
@@ -134,22 +165,41 @@
       <h1>MTG Binder</h1>
       <p>
         A free binder for your Magic: The Gathering collection. Open the CSV
-        your card scanner exports &mdash; or one from Moxfield, Deckbox or
-        MTGGoldfish &mdash; to browse it, see what it is worth, check it
+        your card scanner exports (ManaBox, Dragon Shield, TCGplayer) &mdash;
+        or one from Moxfield, Archidekt, Deckbox or MTGGoldfish, or a plain
+        spreadsheet &mdash; to browse it, see what it is worth, check it
         against full set lists, draw test hands and goldfish a deck.
       </p>
       <div id="drop">
-        <p>Drop your collection CSV here, or</p>
+        <p>Drop your collection CSV or a decklist file here, or</p>
         <button id="open">Open collection…</button>
         <p style="font-size: 0.78rem; margin-bottom: 0">
-          Dropping or opening lets this page save your edits back to the file.
-          To browse a copy without ever writing to it:
-          <input type="file" id="file" accept=".csv,text/csv" multiple />
+          You can pick several files; they combine into one collection. Where
+          the browser offers it, allowing edits saves your changes straight to
+          the file - or decline, and browse a copy.
         </p>
+      </div>
+      <div id="moxfield">
+        <h2>Paste a link or a decklist</h2>
+        <p>
+          Links to your public lists, one per line: a Moxfield collection
+          (each binder becomes its own folder) or binder, an Archidekt
+          collection or deck, or an MTGGoldfish deck. Or paste a deck as
+          text &mdash; from Arena, MTGO, or any "4 Lightning Bolt" list.
+        </p>
+        <textarea
+          id="mox-links"
+          rows="3"
+          spellcheck="false"
+          placeholder="https://moxfield.com/collection/...&#10;https://archidekt.com/decks/...&#10;https://www.mtggoldfish.com/deck/..."
+        ></textarea>
+        <button id="mox-import">Import</button>
+        <p id="mox-status"></p>
       </div>
       <p style="font-size: 0.78rem">
         Your collection stays in your browser. Nothing is uploaded anywhere; the
-        page only asks Scryfall for each card's artwork and prices.
+        page only asks Scryfall for each card's artwork and prices, and the
+        sites of the links you paste.
       </p>
     </div>
 
