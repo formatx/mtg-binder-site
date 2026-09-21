@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MTG Binder</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Only the page shell. Everything about the binder itself - rows, tiles,
+         charts, modals - comes from the plugin's own styles.css. */
+      :root {
+        color-scheme: dark;
+        --background-primary: #1b1b1f;
+        --background-primary-alt: #202026;
+        --background-secondary: #26262d;
+        --background-modifier-border: #3a3a44;
+        --background-modifier-border-hover: #4c4c58;
+        --text-normal: #e6e6ea;
+        --text-muted: #a9a9b6;
+        --text-faint: #7b7b88;
+        --text-accent: #a78bfa;
+        --text-on-accent: #ffffff;
+        --interactive-accent: #7c5cff;
+        --font-ui-small: 0.82rem;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--background-primary);
+        color: var(--text-normal);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      #intro {
+        max-width: 640px;
+        margin: 8vh auto;
+        padding: 0 20px;
+      }
+      #intro h1 {
+        font-size: 1.5rem;
+        margin: 0 0 6px;
+      }
+      #intro p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      #drop {
+        margin-top: 18px;
+        padding: 26px;
+        border: 1px dashed var(--background-modifier-border);
+        border-radius: 12px;
+        text-align: center;
+        color: var(--text-muted);
+      }
+      #drop.is-over {
+        border-color: var(--interactive-accent);
+        color: var(--text-normal);
+      }
+      button,
+      input[type="file"] {
+        background: var(--background-secondary);
+        color: var(--text-normal);
+        border: 1px solid var(--background-modifier-border);
+        border-radius: 7px;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+      }
+      button {
+        cursor: pointer;
+      }
+      #file-name {
+        position: fixed;
+        right: 12px;
+        bottom: 10px;
+        font-size: 0.72rem;
+        color: var(--text-faint);
+      }
+      /* The binder fills the window, the way it fills its tab in Obsidian. */
+      #binder {
+        padding: 14px 18px 30px;
+      }
+      /* Credits: small and out of the way, but always on the page. */
+      #credits {
+        max-width: 760px;
+        margin: 24px auto 40px;
+        padding: 0 20px;
+        font-size: 0.72rem;
+        line-height: 1.5;
+        color: var(--text-faint);
+        text-align: center;
+      }
+      #credits a {
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body class="theme-dark">
+    <div id="intro">
+      <h1>MTG Binder</h1>
+      <p>
+        The same binder as the Obsidian plugin, in a page. Open your collection
+        CSV to browse it, draw test hands, and — where your browser allows
+        writing files — edit it in place.
+      </p>
+      <div id="drop">
+        <p>Drop a <code>.mtg.collection.csv</code> here, or</p>
+        <button id="open">Open collection…</button>
+        <p style="font-size: 0.78rem; margin-bottom: 0">
+          Dropping or opening lets this page save your edits back to the file.
+          To browse a copy without ever writing to it:
+          <input type="file" id="file" accept=".csv,text/csv" multiple />
+        </p>
+      </div>
+      <p style="font-size: 0.78rem">
+        Your collection stays in your browser. Nothing is uploaded anywhere; the
+        page only asks Scryfall for each card's artwork and prices.
+      </p>
+    </div>
+
+    <div id="binder" class="mtg-binder"></div>
+    <div id="file-name"></div>
+
+    <footer id="credits">
+      Free and non-commercial. Card data and images from
+      <a href="https://scryfall.com" target="_blank" rel="noopener">Scryfall</a>.
+      MTG Binder is unofficial Fan Content permitted under the
+      <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener">Fan Content Policy</a>.
+      Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast.
+      &copy;Wizards of the Coast LLC.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
