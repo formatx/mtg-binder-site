@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css" />
     <style>
       /* Only the page shell. Everything about the binder itself - rows, tiles,
-         charts, modals - comes from the plugin's own styles.css. */
+         charts, dialogs - comes from styles.css. */
       :root {
         color-scheme: dark;
         --background-primary: #1b1b1f;
@@ -75,7 +75,7 @@
         font-size: 0.72rem;
         color: var(--text-faint);
       }
-      /* The binder fills the window, the way it fills its tab in Obsidian. */
+      /* The binder fills the whole window. */
       #binder {
         padding: 14px 18px 30px;
       }
@@ -98,12 +98,13 @@
     <div id="intro">
       <h1>MTG Binder</h1>
       <p>
-        The same binder as the Obsidian plugin, in a page. Open your collection
-        CSV to browse it, draw test hands, and — where your browser allows
-        writing files — edit it in place.
+        A free binder for your Magic: The Gathering collection. Open the CSV
+        your card scanner exports &mdash; or one from Moxfield, Deckbox or
+        MTGGoldfish &mdash; to browse it, see what it is worth, check it
+        against full set lists, draw test hands and goldfish a deck.
       </p>
       <div id="drop">
-        <p>Drop a <code>.mtg.collection.csv</code> here, or</p>
+        <p>Drop your collection CSV here, or</p>
         <button id="open">Open collection…</button>
         <p style="font-size: 0.78rem; margin-bottom: 0">
           Dropping or opening lets this page save your edits back to the file.
