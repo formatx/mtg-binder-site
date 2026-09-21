@@ -67,12 +67,40 @@
       button {
         cursor: pointer;
       }
-      #file-name {
-        position: fixed;
-        right: 12px;
-        bottom: 10px;
+      /* Where the collection is kept, and the ways to add to it. */
+      #corner {
+        flex: none;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 18px 0;
         font-size: 0.72rem;
         color: var(--text-faint);
+      }
+      #corner[hidden] {
+        display: none;
+      }
+      #file-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #corner button {
+        flex: none;
+        font-size: 0.72rem;
+        padding: 2px 8px;
+      }
+      #reconnect {
+        border-color: #e0a64a;
+      }
+      #back {
+        margin-bottom: 14px;
+      }
+      #binder[hidden],
+      #intro[hidden],
+      #back[hidden] {
+        display: none;
       }
       /* The binder fills the whole window. */
       #binder {
@@ -162,6 +190,7 @@
   </head>
   <body class="theme-dark">
     <div id="intro">
+      <button id="back" hidden>Back to your collection</button>
       <h1>MTG Binder</h1>
       <p>
         A free binder for your Magic: The Gathering collection. Open the CSV
@@ -174,9 +203,9 @@
         <p>Drop your collection CSV or a decklist file here, or</p>
         <button id="open">Open collection…</button>
         <p style="font-size: 0.78rem; margin-bottom: 0">
-          You can pick several files; they combine into one collection. Where
-          the browser offers it, allowing edits saves your changes straight to
-          the file - or decline, and browse a copy.
+          You can pick several files; they combine into one collection, and
+          it is kept in this browser, ready next visit. In Chrome and Edge,
+          allowing edits also saves your changes straight to the file.
         </p>
       </div>
       <div id="moxfield">
@@ -197,14 +226,18 @@
         <p id="mox-status"></p>
       </div>
       <p style="font-size: 0.78rem">
-        Your collection stays in your browser. Nothing is uploaded anywhere; the
+        Your collection is kept in your browser. Nothing is uploaded anywhere; the
         page only asks Scryfall for each card's artwork and prices, and the
         sites of the links you paste.
       </p>
     </div>
 
     <div id="binder" class="mtg-binder"></div>
-    <div id="file-name"></div>
+    <div id="corner" hidden>
+      <span id="file-name"></span>
+      <button id="reconnect" hidden>Reconnect</button>
+      <button id="import-more">Import more</button>
+    </div>
 
     <footer id="credits">
       Free and non-commercial. Card data and images from
