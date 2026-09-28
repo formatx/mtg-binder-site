@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy — MTG Binder</title>
+    <meta name="description" content="What MTG Binder and its link helper do with your data: nothing leaves your browser." />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --ink: #1b1b1f;
+        --paper: #fbfbfd;
+        --muted: #5f5e5a;
+        --rule: #d8d7d2;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #e9e8ef;
+          --paper: #1b1b1f;
+          --muted: #a5a4ad;
+          --rule: #34343a;
+        }
+      }
+      body {
+        margin: 0 auto;
+        padding: 48px 20px 72px;
+        max-width: 42rem;
+        background: var(--paper);
+        color: var(--ink);
+        font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      h1 { font-size: 1.6rem; margin: 0 0 8px; }
+      h2 { font-size: 1.05rem; margin: 32px 0 8px; }
+      .sub { color: var(--muted); margin-top: 0; }
+      footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy</h1>
+    <p class="sub">MTG Binder, and the MTG Binder link helper extension.</p>
+
+    <h2>The short version</h2>
+    <p>
+      Your collection stays in your browser. There is no account, no server of ours, and no analytics
+      of any kind. Nothing you open is uploaded anywhere.
+    </p>
+
+    <h2>The website</h2>
+    <p>
+      A collection file you open is kept in your own browser's storage so it is still there next
+      visit, and — if your browser allows it and you choose to — written back to the file you picked
+      on your own computer. Neither copy leaves your machine.
+    </p>
+    <p>The page asks two other sites for things, and tells them nothing about you beyond the request itself:</p>
+    <ul>
+      <li><a href="https://scryfall.com">Scryfall</a>, for each card's artwork, prices and set information.</li>
+      <li><a href="https://mtgjson.com">MTGJSON</a>, for the preconstructed decklists used by checklists.</li>
+    </ul>
+    <p>Card images are cached in your browser so the page works offline afterwards.</p>
+
+    <h2>The link helper extension</h2>
+    <p>
+      The extension exists only to fetch a card list the website cannot fetch itself. It reads
+      Moxfield, Archidekt and MTGGoldfish card-list addresses, only when the MTG Binder page asks
+      for one, and hands the answer straight back to that page. It stores nothing, and sends nothing
+      anywhere else.
+    </p>
+
+    <h2>Your data, removed</h2>
+    <p>
+      Since nothing is held by us, there is nothing for us to delete. Clearing site data for this
+      page in your browser removes everything it kept; removing the extension removes the extension.
+    </p>
+
+    <h2>Changes</h2>
+    <p>If this ever changes, this page changes with it. Last updated 28 September 2026.</p>
+
+    <footer>Free and non-commercial. No tracking, no accounts, no data collected.</footer>
+  </body>
+</html>
