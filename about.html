@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — MTG Binder</title>
+    <meta name="description" content="What MTG Binder is, where its card data comes from, and what happens to yours: nothing leaves your browser." />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --ink: #1b1b1f;
+        --paper: #fbfbfd;
+        --muted: #5f5e5a;
+        --rule: #d8d7d2;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #e9e8ef;
+          --paper: #1b1b1f;
+          --muted: #a5a4ad;
+          --rule: #34343a;
+        }
+      }
+      body {
+        margin: 0 auto;
+        padding: 48px 20px 72px;
+        max-width: 42rem;
+        background: var(--paper);
+        color: var(--ink);
+        font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      h1 { font-size: 1.6rem; margin: 0 0 24px; }
+      h2 { font-size: 1.05rem; margin: 32px 0 8px; }
+      .back { display: inline-block; margin-bottom: 32px; color: var(--muted); }
+      footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <a class="back" href="./">← Back to your binder</a>
+
+    <h1>About MTG Binder</h1>
+
+    <p>
+      A free binder for a Magic: The Gathering collection kept as a CSV file:
+      browse it, see what it is worth, check it against set lists, draw test
+      hands and goldfish a deck. There is no account and nothing to pay for.
+    </p>
+    <p>
+      Open a file exported by a card scanner app, Moxfield, Archidekt, Deckbox
+      or a spreadsheet, or paste a decklist. Whatever columns your file already
+      has are kept, including anything this page does not understand, so it
+      stays usable everywhere else you use it.
+    </p>
+
+    <h2>Where the card data comes from</h2>
+    <ul>
+      <li><a href="https://scryfall.com">Scryfall</a> — artwork, prices, set and printing information.</li>
+      <li><a href="https://mtgjson.com">MTGJSON</a> — the preconstructed decklists used by checklists.</li>
+    </ul>
+    <p>Neither of them is told anything about you; the page just asks for cards.</p>
+
+    <h2 id="privacy">Privacy</h2>
+    <p>
+      Your collection stays in your browser. There is no account, no server of
+      ours, and no analytics of any kind. Nothing you open is uploaded anywhere.
+    </p>
+    <p>
+      A collection file you open is kept in your own browser's storage so it is
+      still there next visit, and — if your browser allows it and you choose to
+      — written back to the file you picked on your own computer. Neither copy
+      leaves your machine. Card images are cached in your browser so the page
+      works offline afterwards.
+    </p>
+    <p>
+      The <strong>link helper extension</strong>, if you installed it, exists
+      only to fetch a card list this page cannot fetch itself. It reads
+      Moxfield, Archidekt and MTGGoldfish card-list addresses, only when this
+      page asks for one, and hands the answer straight back. It stores nothing
+      and sends nothing anywhere else.
+    </p>
+    <p>
+      Since nothing is held by us, there is nothing for us to delete. Clearing
+      site data for this page removes everything it kept; removing the
+      extension removes the extension. If any of this ever changes, this page
+      changes with it — last updated 29 September 2026.
+    </p>
+
+    <h2>Licence</h2>
+    <p>
+      MTG Binder is free and non-commercial, and its source is released under
+      the MIT licence. It is not affiliated with or endorsed by Wizards of the
+      Coast; card names, images and set data are their property.
+    </p>
+
+    <footer>Free and non-commercial. No tracking, no accounts, no data collected.</footer>
+  </body>
+</html>

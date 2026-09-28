@@ -16,7 +16,5 @@ sites of any links you paste.
 
 This repository holds only the built page; it is published automatically.
 
-MTG Binder is unofficial Fan Content permitted under the
-[Fan Content Policy](https://company.wizards.com/en/legal/fancontentpolicy).
-Not approved/endorsed by Wizards. Portions of the materials used are property
-of Wizards of the Coast. ©Wizards of the Coast LLC.
+Free and non-commercial, MIT licensed. Not affiliated with or endorsed by
+Wizards of the Coast; card names, images and set data are their property.
