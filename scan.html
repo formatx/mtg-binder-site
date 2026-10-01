@@ -62,6 +62,11 @@
         font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         -webkit-tap-highlight-color: transparent;
       }
+      .stamp {
+        display: block;
+        font: 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+        color: var(--muted);
+      }
       header {
         display: flex;
         align-items: baseline;
@@ -464,7 +469,12 @@
   </head>
   <body>
     <header>
-      <h1>Scan cards</h1>
+      <div>
+        <h1>Scan cards</h1>
+        <!-- In the header, not buried below a log: the whole point of it is
+             being readable at a glance when a page looks unchanged. -->
+        <span class="stamp" id="build">build 1740902e</span>
+      </div>
       <span class="muted" id="ready"></span>
     </header>
 
@@ -556,9 +566,6 @@
           <a href="./">Open the full binder</a> — best on a computer for now ·
           <a href="about.html#privacy">privacy</a>
         </p>
-        <!-- Which build this is. A page cached by a phone looks exactly like a
-             fresh one, and "it seems the same" is unanswerable without this. -->
-        <p class="muted" id="build">build d7573c43</p>
       </section>
     </main>
 
@@ -567,6 +574,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=d7573c43"></script>
+    <script src="scan.js?v=1740902e"></script>
   </body>
 </html>
