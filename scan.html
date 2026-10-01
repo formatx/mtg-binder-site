@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Scan cards" />
+    <meta name="theme-color" content="#1b1b1f" />
+    <title>Scan cards — MTG Binder</title>
+    <meta name="description" content="Scan cards with your phone's camera into a CSV kept in your own Google Drive." />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --ink: #1b1b1f;
+        --paper: #fbfbfd;
+        --panel: #ffffff;
+        --muted: #5f5e5a;
+        --rule: #d8d7d2;
+        --accent: #7a5cff;
+        --on-accent: #ffffff;
+        --good: #1a7f37;
+        --bad: #b42318;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --ink: #e9e8ef;
+          --paper: #1b1b1f;
+          --panel: #24242b;
+          --muted: #a5a4ad;
+          --rule: #34343a;
+          --accent: #a08cff;
+          --on-accent: #1b1b1f;
+          --good: #4ac26b;
+          --bad: #ff7b72;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0 auto;
+        padding: calc(env(safe-area-inset-top, 0px) + 32px) 16px calc(env(safe-area-inset-bottom, 0px) + 48px);
+        max-width: 32rem;
+        background: var(--paper);
+        color: var(--ink);
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0 0 8px;
+      }
+      p {
+        margin: 0 0 14px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        padding: 16px;
+        margin: 0 0 16px;
+      }
+      button {
+        font: inherit;
+        /* 44px is the smallest target a thumb reliably hits. */
+        min-height: 44px;
+        padding: 11px 16px;
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        background: var(--panel);
+        color: inherit;
+        cursor: pointer;
+      }
+      button.primary {
+        background: var(--accent);
+        color: var(--on-accent);
+        border-color: transparent;
+        font-weight: 600;
+        width: 100%;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      button + button {
+        margin-top: 8px;
+      }
+      /* Beats any display a class below sets: a flex row is still flex when
+         hidden, so the attribute alone would do nothing. */
+      [hidden] {
+        display: none !important;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .row button {
+        flex: 1 1 auto;
+      }
+      .who {
+        font-weight: 600;
+        word-break: break-all;
+      }
+      /* The phone has no developer console worth opening, so the page keeps
+         its own record of what happened. */
+      #log {
+        font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+        background: rgba(127, 127, 127, 0.12);
+        border-radius: 10px;
+        padding: 12px;
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        max-height: 40vh;
+        overflow-y: auto;
+      }
+      .ok {
+        color: var(--good);
+      }
+      .bad {
+        color: var(--bad);
+      }
+      footer {
+        margin-top: 24px;
+        padding-top: 14px;
+        border-top: 1px solid var(--rule);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Scan cards</h1>
+    <p class="muted">
+      Scanned cards are written to a single CSV in your own Google Drive, which
+      your binder can open on any computer. Nothing is kept by us.
+    </p>
+
+    <div class="panel" id="account">
+      <p id="accountState" class="muted">Not connected.</p>
+      <button class="primary" id="connect">Connect Google Drive</button>
+      <div class="row" id="connected" hidden>
+        <button id="check">Check the file</button>
+        <button id="disconnect">Disconnect</button>
+      </div>
+    </div>
+
+    <p class="muted" id="intro">
+      This is an early version: it signs in and prepares the file. The camera
+      comes next.
+    </p>
+
+    <pre id="log">Ready.</pre>
+
+    <footer>
+      <a href="./">Open the full binder</a> — best on a computer for now ·
+      <a href="about.html#privacy">privacy</a>
+    </footer>
+    <script src="scan.js?v=6be30fe8"></script>
+  </body>
+</html>
