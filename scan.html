@@ -15,64 +15,97 @@
         --ink: #1b1b1f;
         --paper: #fbfbfd;
         --panel: #ffffff;
+        --sunk: #eceaf2;
         --muted: #5f5e5a;
         --rule: #d8d7d2;
         --accent: #7a5cff;
         --on-accent: #ffffff;
         --good: #1a7f37;
+        --warn: #a15c07;
         --bad: #b42318;
+        --stage: #0d1119;
       }
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) {
           --ink: #e9e8ef;
           --paper: #1b1b1f;
           --panel: #24242b;
+          --sunk: #2c2c34;
           --muted: #a5a4ad;
           --rule: #34343a;
           --accent: #a08cff;
           --on-accent: #1b1b1f;
           --good: #4ac26b;
+          --warn: #e3a246;
           --bad: #ff7b72;
+          --stage: #0d1119;
         }
       }
       * {
         box-sizing: border-box;
       }
+      /* Beats any display a class below sets: a flex row is still flex when
+         hidden, so the attribute alone would do nothing. */
+      [hidden] {
+        display: none !important;
+      }
+      html,
       body {
-        margin: 0 auto;
-        padding: calc(env(safe-area-inset-top, 0px) + 32px) 16px calc(env(safe-area-inset-bottom, 0px) + 48px);
-        max-width: 32rem;
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
         background: var(--paper);
         color: var(--ink);
-        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         -webkit-tap-highlight-color: transparent;
       }
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px 8px;
+      }
       h1 {
-        font-size: 1.5rem;
-        margin: 0 0 8px;
+        font-size: 1.25rem;
+        margin: 0;
+      }
+      h2 {
+        font-size: 1rem;
+        margin: 18px 0 8px;
+      }
+      main {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 16px 24px;
+      }
+      .view {
+        display: none;
+        max-width: 34rem;
+        margin: 0 auto;
+      }
+      .view.on {
+        display: block;
       }
       p {
-        margin: 0 0 14px;
+        margin: 0 0 12px;
       }
       .muted {
         color: var(--muted);
-      }
-      .panel {
-        background: var(--panel);
-        border: 1px solid var(--rule);
-        border-radius: 14px;
-        padding: 16px;
-        margin: 0 0 16px;
+        font-size: 0.9rem;
       }
       button {
         font: inherit;
+        color: inherit;
         /* 44px is the smallest target a thumb reliably hits. */
         min-height: 44px;
-        padding: 11px 16px;
+        padding: 10px 14px;
         border: 1px solid var(--rule);
         border-radius: 10px;
         background: var(--panel);
-        color: inherit;
         cursor: pointer;
       }
       button.primary {
@@ -80,43 +113,275 @@
         color: var(--on-accent);
         border-color: transparent;
         font-weight: 600;
-        width: 100%;
       }
       button:disabled {
-        opacity: 0.5;
+        opacity: 0.45;
         cursor: default;
       }
-      button + button {
-        margin-top: 8px;
-      }
-      /* Beats any display a class below sets: a flex row is still flex when
-         hidden, so the attribute alone would do nothing. */
-      [hidden] {
-        display: none !important;
+      .wide {
+        width: 100%;
       }
       .row {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
       }
-      .row button {
+      .row > * {
         flex: 1 1 auto;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        padding: 14px;
+        margin: 0 0 14px;
+      }
+
+      /* The camera */
+      .stage {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        max-height: 56vh;
+        background: var(--stage);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      .stage video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .guide {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 86%;
+        aspect-ratio: 63 / 88;
+        max-width: 88%;
+        border-radius: 4.5% / 3.2%;
+        box-shadow: 0 0 0 2000px rgba(13, 17, 25, 0.45);
+      }
+      .guide i {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 3px solid var(--accent);
+      }
+      .guide i:nth-child(1) {
+        left: -3px;
+        top: -3px;
+        border-right: 0;
+        border-bottom: 0;
+        border-top-left-radius: 9px;
+      }
+      .guide i:nth-child(2) {
+        right: -3px;
+        top: -3px;
+        border-left: 0;
+        border-bottom: 0;
+        border-top-right-radius: 9px;
+      }
+      .guide i:nth-child(3) {
+        left: -3px;
+        bottom: -3px;
+        border-right: 0;
+        border-top: 0;
+        border-bottom-left-radius: 9px;
+      }
+      .guide i:nth-child(4) {
+        right: -3px;
+        bottom: -3px;
+        border-left: 0;
+        border-top: 0;
+        border-bottom-right-radius: 9px;
+      }
+      .cover {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 24px;
+        text-align: center;
+        color: #ece6d6;
+        background: var(--stage);
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+      .flash.on {
+        opacity: 0.5;
+        transition: none;
+      }
+      #scan {
+        margin: 12px 0 0;
+        font-size: 1.1rem;
+        padding: 14px;
+      }
+
+      /* What it thinks it saw */
+      .found {
+        margin-top: 14px;
+      }
+      .foundTop {
+        display: flex;
+        gap: 12px;
+      }
+      .foundTop img {
+        width: 88px;
+        border-radius: 5px;
+        background: var(--sunk);
+      }
+      .foundName {
+        font-size: 1.15rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .sure {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 99px;
+        background: var(--sunk);
+        margin-top: 6px;
+      }
+      .sure.strong {
+        color: var(--good);
+      }
+      .sure.possible {
+        color: var(--warn);
+      }
+      .sure.weak {
+        color: var(--bad);
+      }
+      .others {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        margin-top: 10px;
+        padding-bottom: 4px;
+      }
+      .others button {
+        flex: 0 0 auto;
+        width: 74px;
+        padding: 4px;
+        min-height: 0;
+        font-size: 0.72rem;
+      }
+      .others img {
+        width: 100%;
+        border-radius: 4px;
+        display: block;
+      }
+
+      /* Lists */
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      li img {
+        width: 38px;
+        border-radius: 3px;
+      }
+      .what {
+        flex: 1;
+        min-width: 0;
+      }
+      .what b {
+        display: block;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .what span {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .count {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .count button {
+        width: 38px;
+        min-height: 38px;
+        padding: 0;
+        font-weight: 700;
+      }
+      .count output {
+        min-width: 20px;
+        text-align: center;
+        font-weight: 600;
+      }
+      .none {
+        padding: 24px 4px;
+        text-align: center;
+        color: var(--muted);
+      }
+      .switch {
+        width: 24px;
+        height: 24px;
+        accent-color: var(--accent);
+        flex: 0 0 auto;
+      }
+      input[type="text"] {
+        font: inherit;
+        color: inherit;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 10px 12px;
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        background: var(--panel);
+        text-transform: lowercase;
+      }
+      .bar {
+        height: 8px;
+        background: var(--sunk);
+        border-radius: 99px;
+        overflow: hidden;
+        margin: 10px 0 6px;
+      }
+      .bar div {
+        height: 100%;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.2s;
       }
       .who {
         font-weight: 600;
         word-break: break-all;
       }
-      /* The phone has no developer console worth opening, so the page keeps
-         its own record of what happened. */
       #log {
         font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
-        background: rgba(127, 127, 127, 0.12);
+        background: var(--sunk);
         border-radius: 10px;
-        padding: 12px;
-        margin: 0;
+        padding: 10px;
+        margin: 10px 0 0;
         white-space: pre-wrap;
         word-break: break-word;
-        max-height: 40vh;
+        max-height: 30vh;
         overflow-y: auto;
       }
       .ok {
@@ -125,45 +390,131 @@
       .bad {
         color: var(--bad);
       }
-      footer {
-        margin-top: 24px;
-        padding-top: 14px;
+
+      nav {
+        display: flex;
+        background: var(--panel);
         border-top: 1px solid var(--rule);
-        color: var(--muted);
-        font-size: 0.85rem;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
       }
-      a {
-        color: inherit;
+      nav button {
+        flex: 1;
+        border: 0;
+        border-radius: 0;
+        background: none;
+        color: var(--muted);
+        padding: 12px 0;
+      }
+      nav button[aria-selected="true"] {
+        color: var(--ink);
+        font-weight: 600;
+        box-shadow: inset 0 3px 0 var(--accent);
+      }
+      nav .tally {
+        font-size: 0.75rem;
+        background: var(--sunk);
+        border-radius: 99px;
+        padding: 1px 7px;
+        margin-left: 4px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Scan cards</h1>
-    <p class="muted">
-      Scanned cards are written to a single CSV in your own Google Drive, which
-      your binder can open on any computer. Nothing is kept by us.
-    </p>
+    <header>
+      <h1>Scan cards</h1>
+      <span class="muted" id="ready"></span>
+    </header>
 
-    <div class="panel" id="account">
-      <p id="accountState" class="muted">Not connected.</p>
-      <button class="primary" id="connect">Connect Google Drive</button>
-      <div class="row" id="connected" hidden>
-        <button id="check">Check the file</button>
-        <button id="disconnect">Disconnect</button>
-      </div>
-    </div>
+    <main>
+      <section class="view on" id="view-scan">
+        <div class="stage" id="stage">
+          <video id="video" playsinline muted autoplay></video>
+          <div class="guide" id="guide"><i></i><i></i><i></i><i></i></div>
+          <div class="flash" id="flash"></div>
+          <div class="cover" id="cover">
+            <p id="coverMsg">Fit the card inside the corners, then tap Scan.</p>
+            <button class="primary" id="startCamera">Start camera</button>
+          </div>
+        </div>
+        <button class="primary wide" id="scan" disabled>Scan</button>
+        <p class="muted" id="scanHint">Tilt the card slightly if a sleeve or foil is catching the light.</p>
 
-    <p class="muted" id="intro">
-      This is an early version: it signs in and prepares the file. The camera
-      comes next.
-    </p>
+        <div class="panel found" id="found" hidden>
+          <div class="foundTop">
+            <img id="foundImage" alt="" />
+            <div class="what">
+              <div class="foundName" id="foundName"></div>
+              <div class="muted" id="foundMeta"></div>
+              <span class="sure" id="foundSure"></span>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <button class="primary" id="keep">Add to list</button>
+            <button id="skip">Skip</button>
+          </div>
+          <p class="muted" style="margin: 10px 0 0">Not it? Tap the right card:</p>
+          <div class="others" id="others"></div>
+        </div>
+      </section>
 
-    <pre id="log">Ready.</pre>
+      <section class="view" id="view-cards">
+        <h2>Scanned</h2>
+        <p class="muted">
+          A list waiting to be written out, not a collection. Saving replaces
+          <b id="fileName">the file</b> in your Drive with what is here.
+        </p>
+        <div class="row">
+          <button class="primary" id="save">Save to Drive</button>
+          <button id="clear">Clear list</button>
+        </div>
+        <ul id="cardList"></ul>
+      </section>
 
-    <footer>
-      <a href="./">Open the full binder</a> — best on a computer for now ·
-      <a href="about.html#privacy">privacy</a>
-    </footer>
-    <script src="scan.js?v=6be30fe8"></script>
+      <section class="view" id="view-sets">
+        <h2>Google Drive</h2>
+        <div class="panel">
+          <p id="account" class="muted">Not connected.</p>
+          <div class="row">
+            <button class="primary" id="connect">Connect</button>
+            <button id="disconnect" hidden>Disconnect</button>
+          </div>
+        </div>
+
+        <h2>Sets to match against</h2>
+        <p class="muted">
+          Switch off everything you are not sorting. A card that is not in the
+          list cannot be mistaken for the one in your hand, so fewer sets means
+          fewer wrong guesses — not just a shorter wait.
+        </p>
+        <div class="row">
+          <input type="text" id="setCode" placeholder="Set code, like fj25" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="8" />
+          <button class="primary" id="addSet" style="flex: 0 0 auto">Add</button>
+        </div>
+        <div id="progress" hidden>
+          <div class="bar"><div id="bar"></div></div>
+          <p class="muted" id="progressText"></p>
+        </div>
+        <ul id="setList"></ul>
+
+        <h2>What happened</h2>
+        <pre id="log">Ready.</pre>
+        <p class="muted" style="margin-top: 14px">
+          <a href="./">Open the full binder</a> — best on a computer for now ·
+          <a href="about.html#privacy">privacy</a>
+        </p>
+      </section>
+    </main>
+
+    <nav role="tablist">
+      <button role="tab" aria-selected="true" data-view="scan">Scan</button>
+      <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
+      <button role="tab" aria-selected="false" data-view="sets">Sets</button>
+    </nav>
+    <script src="scan.js?v=51e2d6c0"></script>
   </body>
 </html>
