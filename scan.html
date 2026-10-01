@@ -199,6 +199,19 @@
         border-top: 0;
         border-bottom-right-radius: 9px;
       }
+      .locked {
+        position: absolute;
+        border: 2px solid var(--good);
+        border-radius: 3px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+        transition: all 90ms linear;
+      }
+      /* Once the card is found, the guides are noise - they were only ever
+         telling somebody where to hold it. */
+      .stage.found .guide {
+        opacity: 0.25;
+      }
       .cover {
         position: absolute;
         inset: 0;
@@ -460,6 +473,9 @@
         <div class="stage" id="stage">
           <video id="video" playsinline muted autoplay></video>
           <div class="guide" id="guide"><i></i><i></i><i></i><i></i></div>
+          <!-- Drawn where the card has actually been found, so holding it
+               anywhere in frame is enough and the guides are only a hint. -->
+          <div class="locked" id="locked" hidden></div>
           <div class="flash" id="flash"></div>
           <div class="cover" id="cover">
             <p id="coverMsg">Fit the card inside the corners, then tap Scan.</p>
@@ -548,6 +564,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=55ddaf09"></script>
+    <script src="scan.js?v=7403f8b7"></script>
   </body>
 </html>
