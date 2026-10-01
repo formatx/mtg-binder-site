@@ -258,9 +258,9 @@
         object-fit: cover;
       }
       .side canvas {
-        /* Nearest-neighbour: this is 32 pixels square and smoothing it would
-           blur away exactly the misalignment it is here to show. */
-        image-rendering: pixelated;
+        /* Drawn at the size the camera was cropped to, not the size a
+           fingerprint is reduced to: judging a crop needs resolution and
+           matching does not. */
       }
       .side figcaption {
         font-size: 0.72rem;
@@ -548,6 +548,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=28c34084"></script>
+    <script src="scan.js?v=a9ddcff7"></script>
   </body>
 </html>
