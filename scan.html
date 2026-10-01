@@ -234,32 +234,39 @@
       .found {
         margin-top: 14px;
       }
-      .foundTop {
+      .side {
         display: flex;
-        gap: 12px;
+        gap: 10px;
+        margin-bottom: 10px;
       }
-      .foundTop img {
-        width: 88px;
+      .side figure {
+        flex: 1 1 0;
+        margin: 0;
+        min-width: 0;
+      }
+      .side canvas,
+      .side img {
+        display: block;
+        width: 100%;
+        /* A card's shape, not the fingerprint's. What is stored is 32 pixels
+           square, so a 63:88 card is squashed into it - every reference the
+           same way, which is why matching does not care. An eye does, so it
+           is stretched back here, where the only job is judging the crop. */
+        aspect-ratio: 63 / 88;
         border-radius: 5px;
         background: var(--sunk);
+        object-fit: cover;
       }
-      .saw {
-        margin: 0;
-        flex: 0 0 auto;
-        text-align: center;
-      }
-      .saw canvas {
-        width: 44px;
-        height: 44px;
-        border-radius: 4px;
-        background: var(--sunk);
+      .side canvas {
         /* Nearest-neighbour: this is 32 pixels square and smoothing it would
-           hide exactly the misalignment it is here to show. */
+           blur away exactly the misalignment it is here to show. */
         image-rendering: pixelated;
       }
-      .saw figcaption {
-        font-size: 0.7rem;
+      .side figcaption {
+        font-size: 0.72rem;
         color: var(--muted);
+        text-align: center;
+        margin-top: 4px;
       }
       .foundName {
         font-size: 1.15rem;
@@ -463,21 +470,22 @@
         <p class="muted" id="scanHint">Tilt the card slightly if a sleeve or foil is catching the light.</p>
 
         <div class="panel found" id="found" hidden>
-          <div class="foundTop">
-            <img id="foundImage" alt="" />
-            <div class="what">
-              <div class="foundName" id="foundName"></div>
-              <div class="muted" id="foundMeta"></div>
-              <span class="sure" id="foundSure"></span>
-            </div>
-            <!-- What the camera actually took, so a crop that is off is
-                 something you can see rather than something you deduce from
-                 wrong answers. -->
-            <figure class="saw">
+          <!-- The camera's view beside the card it was matched to, the same
+               size and the same way up. A crop that is off is then something
+               to see at a glance rather than deduce from wrong answers. -->
+          <div class="side">
+            <figure>
               <canvas id="saw" width="32" height="32"></canvas>
-              <figcaption>seen</figcaption>
+              <figcaption>what the camera saw</figcaption>
+            </figure>
+            <figure>
+              <img id="foundImage" alt="" />
+              <figcaption>what it matched</figcaption>
             </figure>
           </div>
+          <div class="foundName" id="foundName"></div>
+          <div class="muted" id="foundMeta"></div>
+          <span class="sure" id="foundSure"></span>
           <div class="row" style="margin-top: 10px">
             <button class="primary" id="keep">Add to list</button>
             <button id="skip">Skip</button>
@@ -540,6 +548,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=b51f0662"></script>
+    <script src="scan.js?v=28c34084"></script>
   </body>
 </html>
