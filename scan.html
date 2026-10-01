@@ -243,6 +243,24 @@
         border-radius: 5px;
         background: var(--sunk);
       }
+      .saw {
+        margin: 0;
+        flex: 0 0 auto;
+        text-align: center;
+      }
+      .saw canvas {
+        width: 44px;
+        height: 44px;
+        border-radius: 4px;
+        background: var(--sunk);
+        /* Nearest-neighbour: this is 32 pixels square and smoothing it would
+           hide exactly the misalignment it is here to show. */
+        image-rendering: pixelated;
+      }
+      .saw figcaption {
+        font-size: 0.7rem;
+        color: var(--muted);
+      }
       .foundName {
         font-size: 1.15rem;
         font-weight: 600;
@@ -452,6 +470,13 @@
               <div class="muted" id="foundMeta"></div>
               <span class="sure" id="foundSure"></span>
             </div>
+            <!-- What the camera actually took, so a crop that is off is
+                 something you can see rather than something you deduce from
+                 wrong answers. -->
+            <figure class="saw">
+              <canvas id="saw" width="32" height="32"></canvas>
+              <figcaption>seen</figcaption>
+            </figure>
           </div>
           <div class="row" style="margin-top: 10px">
             <button class="primary" id="keep">Add to list</button>
@@ -515,6 +540,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=51e2d6c0"></script>
+    <script src="scan.js?v=b51f0662"></script>
   </body>
 </html>
