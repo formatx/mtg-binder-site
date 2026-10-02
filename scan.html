@@ -196,10 +196,54 @@
         opacity: 0.5;
         transition: none;
       }
-      #scan {
+      #controls {
         margin: 12px 0 0;
+      }
+      #scan {
+        flex: 1 1 auto;
         font-size: 1.1rem;
         padding: 14px;
+      }
+      #mode {
+        flex: 0 0 auto;
+      }
+      button[aria-pressed="true"] {
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px var(--accent);
+        font-weight: 600;
+      }
+
+      /* Reading the collector line instead of the artwork */
+      .strip figure {
+        margin: 0 0 10px;
+      }
+      .strip canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        /* Left to the browser on purpose. Drawing true pixels would be the
+           honest thing if the canvas were always magnified on its way to the
+           screen, but it is fitted to the panel's width and so is reduced as
+           often as enlarged - and nearest-neighbour on the way down drops rows
+           of a strip only a few rows tall. Smoothing cannot invent letters, so
+           it cannot flatter the crop; the pixel counts below say what is
+           really there. */
+        border-radius: 4px;
+        background: var(--sunk);
+      }
+      .strip figcaption {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .hope.promising {
+        color: var(--good);
+      }
+      .hope.marginal {
+        color: var(--warn);
+      }
+      .hope.hopeless {
+        color: var(--bad);
       }
 
       /* What it thinks it saw */
@@ -427,7 +471,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build 02b2efca</span>
+        <span class="stamp" id="build">build fd8922e3</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -444,8 +488,31 @@
             <button class="primary" id="startCamera">Start camera</button>
           </div>
         </div>
-        <button class="primary wide" id="scan" disabled>Scan</button>
+        <div class="row" id="controls">
+          <button class="primary" id="scan" disabled>Scan</button>
+          <!-- A mode rather than an extra panel: matching artwork and reading
+               the small print want the card at different distances, so doing
+               both at once would do neither well. -->
+          <button id="mode" aria-pressed="false">Collector line</button>
+        </div>
         <p class="muted" id="scanHint">Tilt the card slightly if a sleeve or foil is catching the light.</p>
+
+        <!-- Shown instead of a match while the collector line is what is being
+             read. There is no recogniser behind it yet, on purpose: whether
+             there are enough pixels in this strip to read is the thing to
+             settle first, and a person looking at it settles it. -->
+        <div class="panel strip" id="strip" hidden>
+          <figure>
+            <canvas id="stripLift"></canvas>
+            <figcaption>contrast lifted — what the camera actually has</figcaption>
+          </figure>
+          <figure>
+            <canvas id="stripInk"></canvas>
+            <figcaption>ink and paper — what a recogniser would be handed</figcaption>
+          </figure>
+          <div class="sure hope" id="stripHope"></div>
+          <div class="muted" id="stripMeta"></div>
+        </div>
 
         <div class="panel found" id="found" hidden>
           <!-- The camera's view beside the card it was matched to, the same
@@ -526,6 +593,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=02b2efca"></script>
+    <script src="scan.js?v=fd8922e3"></script>
   </body>
 </html>
