@@ -421,6 +421,18 @@
         font-weight: 600;
         word-break: break-all;
       }
+      #readText {
+        font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+        background: var(--sunk);
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin: 8px 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      #readText:empty {
+        display: none;
+      }
       #log {
         font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
         background: var(--sunk);
@@ -478,7 +490,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build 861c866c</span>
+        <span class="stamp" id="build">build 8aa639e2</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -524,6 +536,22 @@
           </figure>
           <div class="sure hope" id="stripHope"></div>
           <div class="muted" id="stripMeta"></div>
+          <div class="row" style="margin-top: 12px">
+            <button class="primary" id="readLine">Read it</button>
+          </div>
+
+          <div id="read" hidden>
+            <p class="muted" id="readStatus"></p>
+            <!-- What it read, before anything is made of it. A wrong answer is
+                 worth seeing as the recogniser gave it, not as this page's
+                 guess at what it meant. -->
+            <pre id="readText"></pre>
+            <div class="foundName" id="readName"></div>
+            <div class="muted" id="readMeta"></div>
+            <div class="row" style="margin-top: 10px">
+              <button class="primary" id="readKeep" hidden>Add to list</button>
+            </div>
+          </div>
         </div>
 
         <div class="panel found" id="found" hidden>
@@ -605,6 +633,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=861c866c"></script>
+    <script src="scan.js?v=8aa639e2"></script>
   </body>
 </html>
