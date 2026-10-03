@@ -536,7 +536,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build 20cfe7d7</span>
+        <span class="stamp" id="build">build e34a4817</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -591,11 +591,11 @@
         <div class="panel strip" id="strip" hidden>
           <figure>
             <canvas id="stripLift"></canvas>
-            <figcaption>contrast lifted — what the camera actually has</figcaption>
+            <figcaption>contrast lifted — what the recogniser is handed</figcaption>
           </figure>
           <figure>
             <canvas id="stripInk"></canvas>
-            <figcaption>ink and paper — what a recogniser would be handed</figcaption>
+            <figcaption>ink and paper — how the line was found, not how it is read</figcaption>
           </figure>
           <div class="sure hope" id="stripHope"></div>
           <div class="muted" id="stripMeta"></div>
@@ -705,6 +705,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=20cfe7d7"></script>
+    <script src="scan.js?v=e34a4817"></script>
   </body>
 </html>
