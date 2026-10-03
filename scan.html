@@ -320,6 +320,21 @@
       .sure.disputed {
         color: var(--warn);
       }
+      #crossSeen {
+        margin-top: 12px;
+        border-top: 1px solid var(--rule);
+        padding-top: 10px;
+      }
+      #crossStrip {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        background: var(--sunk);
+      }
+      #crossText {
+        margin: 6px 0 0;
+      }
       .check {
         display: flex;
         align-items: flex-start;
@@ -508,7 +523,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build 7ece2c46</span>
+        <span class="stamp" id="build">build 52fbee7b</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -603,6 +618,15 @@
           </div>
           <p class="muted" style="margin: 10px 0 0">Not it? Tap the right card:</p>
           <div class="others" id="others"></div>
+
+          <!-- What the card's own printed line said, shown whether or not it
+               worked. A check that fails silently cannot be told apart from one
+               that is not running at all, which is how a whole feature sits
+               there doing nothing and nobody notices. -->
+          <div id="crossSeen" hidden>
+            <canvas id="crossStrip"></canvas>
+            <p class="muted" id="crossText"></p>
+          </div>
         </div>
       </section>
 
@@ -659,6 +683,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=7ece2c46"></script>
+    <script src="scan.js?v=52fbee7b"></script>
   </body>
 </html>
