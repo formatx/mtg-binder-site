@@ -171,6 +171,13 @@
         pointer-events: none;
         transition: all 90ms linear;
       }
+      .guide {
+        position: absolute;
+        border: 2px dashed var(--accent);
+        border-radius: 4px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+      }
       .cover {
         position: absolute;
         inset: 0;
@@ -471,7 +478,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build fd8922e3</span>
+        <span class="stamp" id="build">build 861c866c</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -482,6 +489,11 @@
           <video id="video" playsinline muted autoplay></video>
           <!-- Drawn around the card wherever it is in the picture. -->
           <div class="locked" id="locked" hidden></div>
+          <!-- And, when the small print is what is being read, drawn where the
+               small print should go. A guide rather than a found outline
+               because a card close enough to read has no edges in the frame
+               left to find. -->
+          <div class="guide" id="guide" hidden></div>
           <div class="flash" id="flash"></div>
           <div class="cover" id="cover">
             <p id="coverMsg">Fit the card inside the corners, then tap Scan.</p>
@@ -593,6 +605,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=fd8922e3"></script>
+    <script src="scan.js?v=861c866c"></script>
   </body>
 </html>
