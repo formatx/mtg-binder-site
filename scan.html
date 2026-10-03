@@ -314,6 +314,24 @@
       .sure.weak {
         color: var(--bad);
       }
+      .sure.confirmed {
+        color: var(--good);
+      }
+      .sure.disputed {
+        color: var(--warn);
+      }
+      .check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 12px 0 0;
+        font-size: 0.85rem;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .check .switch {
+        margin: 1px 0 0;
+      }
       .others {
         display: flex;
         gap: 8px;
@@ -490,7 +508,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build 8aa639e2</span>
+        <span class="stamp" id="build">build 7ece2c46</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -520,6 +538,14 @@
           <button id="mode" aria-pressed="false">Collector line</button>
         </div>
         <p class="muted" id="scanHint">Tilt the card slightly if a sleeve or foil is catching the light.</p>
+        <!-- Two ways of naming the same printing, which fail in opposite
+             directions: the artwork always answers and is sometimes
+             confidently wrong, the printed line usually declines but is
+             checked against Scryfall before it speaks. -->
+        <label class="check">
+          <input type="checkbox" class="switch" id="cross" />
+          <span>Also read the collector line and check it. Slower, far surer, and it works with no sets switched on — the first card downloads about 7 MB.</span>
+        </label>
 
         <!-- Shown instead of a match while the collector line is what is being
              read. There is no recogniser behind it yet, on purpose: whether
@@ -633,6 +659,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=8aa639e2"></script>
+    <script src="scan.js?v=7ece2c46"></script>
   </body>
 </html>
