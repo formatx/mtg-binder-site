@@ -141,15 +141,30 @@
         flex: none;
         margin: 4px auto 6px;
       }
-      #moxfield {
+      #moxfield,
+      #drive {
         margin-top: 18px;
         padding: 18px 22px;
         border: 1px solid var(--background-modifier-border);
         border-radius: 12px;
       }
-      #moxfield h2 {
+      #moxfield h2,
+      #drive h2 {
         font-size: 1rem;
         margin: 0 0 4px;
+      }
+      #drive[hidden] {
+        display: none;
+      }
+      #drive button + button {
+        margin-left: 6px;
+      }
+      #drive-status {
+        font-size: 0.78rem;
+        margin-bottom: 0;
+      }
+      #drive-status:empty {
+        display: none;
       }
       #mox-links {
         width: 100%;
@@ -208,6 +223,24 @@
           allowing edits also saves your changes straight to the file.
         </p>
       </div>
+      <div id="drive" hidden>
+        <h2>Keep it in your Google Drive</h2>
+        <p id="drive-why">
+          Your collection lives in this browser, which means it is on this
+          device only &mdash; and a browser may clear its storage when space
+          runs low. Connect your Google Drive and MTG Binder keeps your CSVs
+          in a folder of their own there, so they are on every device you use
+          and backed up where you can see them.
+        </p>
+        <p id="drive-scope">
+          It asks for the narrowest permission Google offers: it can see only
+          the files it makes itself. Nothing else in your Drive is readable by
+          this page.
+        </p>
+        <button id="drive-connect">Connect Google Drive…</button>
+        <button id="drive-later">Not now</button>
+        <p id="drive-status"></p>
+      </div>
       <div id="moxfield">
         <h2>Paste a link or a decklist</h2>
         <p>
@@ -226,9 +259,10 @@
         <p id="mox-status"></p>
       </div>
       <p style="font-size: 0.78rem">
-        Your collection is kept in your browser. Nothing is uploaded anywhere; the
-        page only asks Scryfall for each card's artwork and prices, and the
-        sites of the links you paste.
+        Your collection is kept in your browser &mdash; and in your own Google
+        Drive, if you connect it. It goes nowhere else; the page only asks
+        Scryfall for each card's artwork and prices, and the sites of the links
+        you paste.
       </p>
     </div>
 
@@ -245,6 +279,6 @@
       Free and non-commercial &middot; <a href="about.html">about, credits and privacy</a>
     </footer>
 
-    <script src="app.js?v=6ddb381b"></script>
+    <script src="app.js?v=4b91577c"></script>
   </body>
 </html>
