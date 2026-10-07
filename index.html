@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MTG Binder</title>
-    <link rel="stylesheet" href="styles.css?v=3119ee3b" />
+    <link rel="stylesheet" href="styles.css?v=2e6dbce9" />
     <style>
       /* Only the page shell. Everything about the binder itself - rows, tiles,
          charts, dialogs - comes from styles.css. */
@@ -130,8 +130,11 @@
       body.has-binder #binder > .mtg-binder-mode-banner {
         flex: none;
       }
-      body.has-binder #binder > .mtg-binder-scroll {
+      body.has-binder #binder > .mtg-binder-body {
         flex: 1 1 auto;
+        min-height: 0;
+      }
+      body.has-binder #binder .mtg-binder-scroll {
         min-height: 160px;
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -279,6 +282,6 @@
       Free and non-commercial &middot; <a href="about.html">about, credits and privacy</a>
     </footer>
 
-    <script src="app.js?v=62452400"></script>
+    <script src="app.js?v=eb47344b"></script>
   </body>
 </html>
