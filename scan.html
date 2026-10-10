@@ -536,7 +536,7 @@
         <h1>Scan cards</h1>
         <!-- In the header, not buried below a log: the whole point of it is
              being readable at a glance when a page looks unchanged. -->
-        <span class="stamp" id="build">build 5881d60c</span>
+        <span class="stamp" id="build">build 8079be95</span>
       </div>
       <span class="muted" id="ready"></span>
     </header>
@@ -611,6 +611,12 @@
             <pre id="readText"></pre>
             <div class="foundName" id="readName"></div>
             <div class="muted" id="readMeta"></div>
+            <!-- The same question as on a matched card, for the same reason:
+                 the printed line does not say which finish was printed either. -->
+            <div class="row" id="readFoil" style="margin-top: 10px" hidden>
+              <button data-foil aria-pressed="false">Foil</button>
+              <span class="muted" data-foil-note>tap before adding, if this one is foil</span>
+            </div>
             <div class="row" style="margin-top: 10px">
               <button class="primary" id="readKeep" hidden>Add to list</button>
             </div>
@@ -634,6 +640,18 @@
           <div class="foundName" id="foundName"></div>
           <div class="muted" id="foundMeta"></div>
           <span class="sure" id="foundSure"></span>
+          <!-- Said back after it is added, so the one thing on the row that no
+               picture could have told us is confirmed rather than assumed. -->
+          <span class="sure strong" id="foundMark" hidden>Foil</span>
+          <!-- A camera cannot see a foil: it is the same artwork under a
+               different finish. So it is asked at the moment the card is in
+               the hand and being looked at, and it goes back off for the next
+               one - most cards are not foil, so the default should be right
+               without anybody touching it. -->
+          <div class="row" id="foundFoil" style="margin-top: 10px">
+            <button data-foil aria-pressed="false">Foil</button>
+            <span class="muted" data-foil-note>tap before adding, if this one is foil</span>
+          </div>
           <div class="row" style="margin-top: 10px">
             <button class="primary" id="keep">Add to list</button>
             <button id="skip">Skip</button>
@@ -705,6 +723,6 @@
       <button role="tab" aria-selected="false" data-view="cards">Cards<span class="tally" id="tally">0</span></button>
       <button role="tab" aria-selected="false" data-view="sets">Sets</button>
     </nav>
-    <script src="scan.js?v=5881d60c"></script>
+    <script src="scan.js?v=8079be95"></script>
   </body>
 </html>
