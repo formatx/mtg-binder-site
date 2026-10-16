@@ -151,6 +151,10 @@
       #scan-link {
         color: var(--accent-ink);
       }
+      #build {
+        font: 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+        color: var(--faint);
+      }
       #drive[hidden] {
         display: none;
       }
@@ -296,6 +300,10 @@
 
     <footer id="credits">
       Free and non-commercial &middot; <a href="about.html">about, credits and privacy</a>
+      <!-- Which build you are actually looking at. A browser serving a cached
+           copy looks exactly like one that is up to date, and this is what
+           settles which it is - the same stamp the scanning page carries. -->
+      &middot; <span id="build">build e77b9638</span>
     </footer>
 
     <script src="app.js?v=47f3db5c"></script>
