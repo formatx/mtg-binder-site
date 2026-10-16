@@ -135,6 +135,7 @@
         margin: 4px auto 6px;
       }
       #moxfield,
+      #scan-way,
       #drive {
         margin-top: 18px;
         padding: 18px 22px;
@@ -142,9 +143,13 @@
         border-radius: 12px;
       }
       #moxfield h2,
+      #scan-way h2,
       #drive h2 {
         font-size: 1rem;
         margin: 0 0 4px;
+      }
+      #scan-link {
+        color: var(--accent-ink);
       }
       #drive[hidden] {
         display: none;
@@ -201,8 +206,13 @@
   <body class="is-dark">
     <div id="intro">
       <button id="back" hidden>Back to your collection</button>
-      <h1>MTG Binder</h1>
-      <p>
+      <!-- Two screens in one element: what somebody arriving for the first
+           time needs to read, and what somebody who already has a collection
+           came back for. The second is not a smaller version of the first -
+           they already know what this is - so the title and the paragraph
+           are swapped rather than trimmed. -->
+      <h1 id="intro-title">MTG Binder</h1>
+      <p id="intro-pitch">
         A free binder for your Magic: The Gathering collection. Open the CSV
         your card scanner exports (ManaBox, Dragon Shield, TCGplayer) &mdash;
         or one from Moxfield, Archidekt, Deckbox or MTGGoldfish, or a plain
@@ -217,6 +227,20 @@
           it is kept in this browser, ready next visit. In Chrome and Edge,
           allowing edits also saves your changes straight to the file.
         </p>
+      </div>
+      <!-- The scanner had no door. It is a whole page of this app - point a
+           camera at a card, it reads the collector line and files it - and
+           nothing anywhere linked to it, so the only way in was typing the
+           address. Every other way cards get in is on this screen; this is
+           one of them. -->
+      <div id="scan-way">
+        <h2>Read cards with your camera</h2>
+        <p>
+          On a phone, point it at a card and it reads the set and collector
+          number off the bottom line, then files it into your collection.
+          Good for a pile you have not catalogued yet.
+        </p>
+        <a id="scan-link" href="scan.html">Open the scanner</a>
       </div>
       <div id="drive" hidden>
         <h2>Keep it in your Google Drive</h2>
@@ -267,13 +291,13 @@
       <button id="save-file" hidden>Keep in a file…</button>
       <span id="save-time"></span>
       <button id="reconnect" hidden>Reconnect</button>
-      <button id="import-more">Import more</button>
+      <button id="import-more">Add cards…</button>
     </div>
 
     <footer id="credits">
       Free and non-commercial &middot; <a href="about.html">about, credits and privacy</a>
     </footer>
 
-    <script src="app.js?v=70e4df8c"></script>
+    <script src="app.js?v=47f3db5c"></script>
   </body>
 </html>
