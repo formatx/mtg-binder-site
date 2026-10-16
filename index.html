@@ -4,30 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MTG Binder</title>
-    <link rel="stylesheet" href="styles.css?v=9ff4a959" />
+    <link rel="stylesheet" href="styles.css?v=71291a13" />
     <style>
       /* Only the page shell. Everything about the binder itself - rows, tiles,
-         charts, dialogs - comes from styles.css. */
+         charts, dialogs - comes from styles.css, and so does the palette these
+         rules draw on: it used to be declared here because the stylesheet was
+         shared with a host that declared its own. */
       :root {
         color-scheme: dark;
-        --background-primary: #1b1b1f;
-        --background-primary-alt: #202026;
-        --background-secondary: #26262d;
-        --background-modifier-border: #3a3a44;
-        --background-modifier-border-hover: #4c4c58;
-        --text-normal: #e6e6ea;
-        --text-muted: #a9a9b6;
-        --text-faint: #7b7b88;
-        --text-accent: #a78bfa;
-        --text-on-accent: #ffffff;
-        --interactive-accent: #7c5cff;
-        --font-ui-small: 0.82rem;
       }
       body {
         margin: 0;
         padding: 0;
-        background: var(--background-primary);
-        color: var(--text-normal);
+        background: var(--paper);
+        color: var(--ink);
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
       #intro {
@@ -40,26 +30,26 @@
         margin: 0 0 6px;
       }
       #intro p {
-        color: var(--text-muted);
+        color: var(--muted);
         font-size: 0.9rem;
         line-height: 1.5;
       }
       #drop {
         margin-top: 18px;
         padding: 26px;
-        border: 1px dashed var(--background-modifier-border);
+        border: 1px dashed var(--rule);
         border-radius: 12px;
         text-align: center;
-        color: var(--text-muted);
+        color: var(--muted);
       }
       #drop.is-over {
-        border-color: var(--interactive-accent);
-        color: var(--text-normal);
+        border-color: var(--accent);
+        color: var(--ink);
       }
       button {
-        background: var(--background-secondary);
-        color: var(--text-normal);
-        border: 1px solid var(--background-modifier-border);
+        background: var(--panel);
+        color: var(--ink);
+        border: 1px solid var(--rule);
         border-radius: 7px;
         padding: 6px 12px;
         font-size: 0.85rem;
@@ -76,7 +66,7 @@
         gap: 8px;
         padding: 4px 18px 0;
         font-size: 0.72rem;
-        color: var(--text-faint);
+        color: var(--faint);
       }
       #corner[hidden] {
         display: none;
@@ -148,7 +138,7 @@
       #drive {
         margin-top: 18px;
         padding: 18px 22px;
-        border: 1px solid var(--background-modifier-border);
+        border: 1px solid var(--rule);
         border-radius: 12px;
       }
       #moxfield h2,
@@ -175,9 +165,9 @@
         margin: 4px 0 8px;
         padding: 8px 10px;
         border-radius: 7px;
-        border: 1px solid var(--background-modifier-border);
-        background: var(--background-secondary);
-        color: var(--text-normal);
+        border: 1px solid var(--rule);
+        background: var(--panel);
+        color: var(--ink);
         font: 0.8rem ui-monospace, SFMono-Regular, Consolas, monospace;
         resize: vertical;
       }
@@ -198,15 +188,17 @@
         padding: 0 20px;
         font-size: 0.72rem;
         line-height: 1.5;
-        color: var(--text-faint);
+        color: var(--faint);
         text-align: center;
       }
       #credits a {
-        color: var(--text-muted);
+        color: var(--muted);
       }
     </style>
   </head>
-  <body class="theme-dark">
+  <!-- The page is dark; the class is what the stylesheet's dark tunings hang
+       off, where a colour needs a different value against a dark ground. -->
+  <body class="is-dark">
     <div id="intro">
       <button id="back" hidden>Back to your collection</button>
       <h1>MTG Binder</h1>
