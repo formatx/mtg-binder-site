@@ -155,6 +155,46 @@
         font: 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
         color: var(--faint);
       }
+      #kind {
+        margin-top: 18px;
+      }
+      #kind h2 {
+        font-size: 1rem;
+        margin: 0 0 8px;
+      }
+      #kind-choices {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 10px;
+      }
+      .kind-choice {
+        display: block;
+        text-align: left;
+        padding: 14px 16px;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        background: var(--panel);
+        color: var(--ink);
+        cursor: pointer;
+        font: inherit;
+      }
+      .kind-choice:hover {
+        border-color: var(--rule-lit);
+      }
+      .kind-choice.is-on {
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+      .kind-choice strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+      .kind-choice span {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.4;
+      }
       #drive[hidden] {
         display: none;
       }
@@ -223,6 +263,24 @@
         spreadsheet &mdash; to browse it, see what it is worth, check it
         against full set lists, draw test hands and goldfish a deck.
       </p>
+      <!-- Asked before anything is added, not after, and asked large.
+           Cards you own and cards you want are different things kept in
+           different files, and getting it wrong adds a deck you do not own to
+           every total in the app. A file that says for itself that it is a
+           list overrules this - a fact in the file beats a button. -->
+      <div id="kind">
+        <h2>What are you adding?</h2>
+        <div id="kind-choices">
+          <button id="kind-own" class="kind-choice is-on" aria-pressed="true">
+            <strong>Cards I own</strong>
+            <span>Goes into your collection and counts toward what it holds and what it is worth.</span>
+          </button>
+          <button id="kind-list" class="kind-choice" aria-pressed="false">
+            <strong>A list of cards</strong>
+            <span>A deck, a cube, a want list. Refers to cards without claiming you own them, and never counts toward your collection.</span>
+          </button>
+        </div>
+      </div>
       <div id="drop">
         <p>Drop your collection CSV or a decklist file here, or</p>
         <button id="open">Open collection…</button>
@@ -303,9 +361,9 @@
       <!-- Which build you are actually looking at. A browser serving a cached
            copy looks exactly like one that is up to date, and this is what
            settles which it is - the same stamp the scanning page carries. -->
-      &middot; <span id="build">build e77b9638</span>
+      &middot; <span id="build">build 690a5a01</span>
     </footer>
 
-    <script src="app.js?v=47f3db5c"></script>
+    <script src="app.js?v=b90eab65"></script>
   </body>
 </html>
